@@ -1,0 +1,60 @@
+{% extends "employee_information/base.html" %} {% load humanize %} {% block pageContent %}
+<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12 p-3 bg-info bg-opacity-10 border border-info border-start-0 rounded " style="border: 2px solid ; margin-top:30px;">
+    {% comment %} <div class="mdc-card  bg-primary text-white" >
+        <div class="d-flex justify-content-between   ">
+            <h4 class="card-title mb-0 ">Main  Page</h4>
+        </div>
+    </div> {% endcomment %}
+    <div class="card text-white shadow-lg p-4" style="background: linear-gradient(135deg, #007bff, #00c6ff); border-radius: 15px; transition: transform 0.3s;">
+        <div class="d-flex justify-content-between align-items-center">
+            <h4 class="card-title mb-0 fw-bolder ">Main Page</h4>
+            <!-- Icon Badge -->
+            <span class="badge bg-light text-primary rounded-circle p-3 shadow-sm">
+                <i class="bi bi-house-fill"></i> <!-- Bootstrap icon for a home/dashboard -->
+            </span>
+        </div>
+        <p class="mt-3">Welcome to the main dashboard page! Access key features and insights.</p>
+    </div>
+    
+</div>
+<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+    <hr class="w-100">
+</div>
+<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-4-tablet">
+    <div class="mdc-card info-card info-card--success text-[ #000000]" style="background-color: #beef00;">
+        <div class="card-inner">
+            <h5 class="card-title">Departments</h5>
+            <h5 class="fw-bold pb-2 mb-1 border-bottom">{{ total_department|intcomma }}</h5>
+            <p class="tx-12 text-semibold ">Over All Count of Departments</p>
+            <div class="card-icon-wrapper">
+                <i class="material-icons">business</i>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-4-tablet">
+    <div class="mdc-card info-card info-card--primary text-white" style="background-color: #FF5A09 ;">
+        <div class="card-inner">
+            <h5 class="card-title">Positions</h5>
+            <h5 class="fw-bold  pb-2 mb-1 border-bottom">{{ total_position|intcomma }}</h5>
+            <p class="tx-12 text-semibold">Over All Count of Positions</p>
+            <div class="card-icon-wrapper">
+                <i class="material-icons">list</i>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-4-tablet ">
+    <div class="mdc-card info-card info-card--info text-white " style="background-color:#4ABDAC">
+        <div class="card-inner">
+            <h5 class="card-title">Employees</h5>
+            <h5 class="fw-bold  pb-2 mb-1 border-bottom">{{ total_employee|intcomma }}</h5>
+            <p class="tx-12 text-semibold">Over All Count of Employees</p>
+            <div class="card-icon-wrapper">
+                <i class="material-icons">group</i>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock pageContent %}

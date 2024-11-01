@@ -1,0 +1,46 @@
+{% load static %}
+<!-- partial:partials/_sidebar.html -->
+<aside class="mdc-drawer mdc-drawer--dismissible mdc-drawer--open"  >
+    <div class="mdc-drawer__header border-bottom border-light">
+        <a href="{% url 'home-page' %}" class="brand-logo text-decoration-none ">
+            <h1 class="text-center text-light fw-bolder  text-3xl">Sayem Workshop BD</h1>
+        </a>
+    </div>
+    <div class="mdc-drawer__content">
+        <div class="mdc-list-group">
+            <nav class="mdc-list mdc-drawer-menu">
+                <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-drawer-link fw-bold" href="{% url 'home-page' %}">
+                        <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">home</i> Home
+                    </a>
+                </div>
+                <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-drawer-link fw-bold" href="{% url 'department-page' %}">
+                        <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">business</i> Department List
+                    </a>
+                </div>
+                <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-drawer-link fw-bold" href="{% url 'position-page' %}">
+                        <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">list</i> Position List
+                    </a>
+                </div>
+                <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-drawer-link fw-bold" href="{% url 'employee-page' %}">
+                        <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">group</i> Employee List
+                    </a>
+                </div>
+                <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-drawer-link fw-bold" href="{% url 'salary' %}">
+                        <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon bi bi-cash-coin " aria-hidden="true"></i>Salary
+                    </a>
+                </div>
+                <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-drawer-link fw-bold " href="{% url 'attendence' %}">
+                        <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon bi bi-person-bounding-box" aria-hidden="true"></i> Attendence 
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </div>
+</aside>
+<!-- partial -->

@@ -1,0 +1,106 @@
+{% extends "employee_information/base.html" %} 
+{% block pageContent %}
+<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12 mb-4">
+    <div class="mdc-card py-4 px-4 bg-gradient-to-r from-indigo-600 to-purple-500 text-white shadow-lg rounded-lg flex justify-between items-center">
+        <h4 class="text-xl font-semibold">Department List</h4>
+        <button class="mdc-button mdc-button--raised btn-sm text-white bg-green-500 hover:bg-green-600 rounded-full shadow-lg" id="create_new">
+            <i class="material-icons mdc-button__icon">add</i><span>Add New</span>
+        </button>
+    </div>
+</div>
+
+<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+    <div class="mdc-card p-4 rounded-lg shadow-xl bg-white">
+        <div class="table-responsive">
+            <table class="table table-hover table-striped table-bordered text-center">
+                <colgroup>
+                    <col width="5%">
+                    <col width="30%">
+                    <col width="30%">
+                    <col width="15%">
+                    <col width="20%">
+                </colgroup>
+                <thead class="bg-gradient-to-r from-purple-600 to-indigo-500 text-white">
+                    <tr>
+                        <th class="py-3 text-white">#</th>
+                        <th class="py-3 text-white ">Department Name</th>
+                        <th class="py-3 text-white">Description</th>
+                        <th class="py-3 text-white ">Status</th>
+                        <th class="py-3 text-white ">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for department in departments %}
+                    <tr class="hover:bg-gray-100 transition-all duration-300">
+                        <td class="px-4 py-2">{{ department.id }}</td>
+                        <td class="px-4 py-2">{{ department.name }}</td>
+                        <td class="px-4 py-2">{{ department.description }}</td>
+                        <td class="px-4 py-2">
+                            {% if department.status == 1 %}
+                            <span class="badge bg-blue-500 text-white px-3 py-1 rounded-full">Active</span>
+                            {% else %}
+                            <span class="badge bg-gray-400 text-white px-3 py-1 rounded-full">Inactive</span>
+                            {% endif %}
+                        </td>
+                        <td class="px-4 py-2">
+                            <button class="mdc-button mdc-button--raised p-1 bg-yellow-500 hover:bg-yellow-600 text-white rounded-full mr-2 edit-data" type="button" data-id="{{ department.pk }}" title="Edit">
+                                <i class="material-icons mdc-button__icon">edit</i>
+                            </button>
+                            <button class="mdc-button mdc-button--raised p-1 bg-red-500 hover:bg-red-600 text-white rounded-full delete-data" type="button" data-id="{{ department.pk }}" title="Delete">
+                                <i class="material-icons mdc-button__icon">delete</i>
+                            </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock pageContent %}
+
+{% block ScriptBlock %}
+<script>
+    $(function() {
+        $('#create_new').click(function() {
+            uni_modal("Add New Department", "{% url 'manage_departments-page' %}");
+        });
+
+        $('.edit-data').click(function() {
+            uni_modal("Edit Department", "{% url 'manage_departments-page' %}?id=" + $(this).attr('data-id'));
+        });
+
+        $('.delete-data').click(function() {
+            _conf("Are you sure to delete this department?", "delete_department", [$(this).attr('data-id')]);
+        });
+    });
+
+    function delete_department($id) {
+        start_loader();
+        $.ajax({
+            headers: {
+                "X-CSRFToken": '{{csrf_token}}'
+            },
+            url: "{% url 'delete-department' %}",
+            method: "POST",
+            data: {
+                id: $id
+            },
+            dataType: "json",
+            error: err => {
+                console.log(err);
+                alert_toast("An error occurred.", 'error');
+                end_loader();
+            },
+            success: function(resp) {
+                if (typeof resp == 'object' && resp.status == 'success') {
+                    location.reload();
+                } else {
+                    alert_toast("An error occurred.", 'error');
+                    end_loader();
+                }
+            }
+        });
+    }
+</script>
+{% endblock ScriptBlock %}

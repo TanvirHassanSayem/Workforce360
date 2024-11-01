@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="bg-gray-200 mb-4">
+       <div class="bg-gray-200 pt-20 pl-10 pr-10">
+            <h1 class="text-2xl font-semibold mb-4 p-4 text-center bg-white">Salary Management</h1>
+       </div>
+<div class="overflow-x-auto bg-light pl-10 pr-10 ">
+    <table class="min-w-full bg-white border-1 border-gray-400 rounded-lg shadow-sm mb-6  ">
+        <colgroup>
+            <col width="15%">
+            <col width="10%">
+            <col width="10%">
+            <col width="10%">
+            <col width="10%">
+        </colgroup>
+        
+        <thead class="bg-white text-gray-600  border-2 border-black p-10 border-l-0 border-r-0 ">
+            <tr>
+                <th class="py-3 px-6 text-left">Name</th>
+                <th class="py-3 px-6 text-left">Department</th>
+                <th class="py-3 px-6 text-left">Position</th>
+                <th class="py-3 px-6 text-left">Salary</th>
+                <th class="py-3 px-6 text-left">Total Given Salary</th>
+            </tr>
+        </thead>
+        <tbody class="m-20">
+            {% for employee in employees %}
+            <tr class="{{ forloop.counter|even:'bg-gray-100' }} border-1 border-blue-400">
+                <td class="py-4 px-6">{{ employee.name }}</td>
+                <td class="py-4 px-6">{{ employee.department }}</td>
+                <td class="py-4 px-6">{{ employee.position }}</td>
+                <td class="py-4 px-6">${{ employee.salary }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div class="bg-gray-200 pt-20 pl-10 pr-10">
+    <h1 class="text-2xl font-semibold mb-4 p-4 text-white bg-gradient-to-r from-pink-500 to-pink-300">Net Profit From Salary Management</h1>         
+            <h3 class="text-1xl font-semibold text-blue-500">Total Budget for the Salary :</h3>
+            <h3 class="text-1xl font-semibold text-green-500">Total Given Salary :</h3>
+            <h3 class="text-1xl font-semibold text-yellow-500">Net Profit :</h3>
+       </div>
+</div>
+{% endblock %}
+
+<!-- Inside the <head> section of base.html -->
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+
+
+
+

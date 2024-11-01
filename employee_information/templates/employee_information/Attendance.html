@@ -1,0 +1,77 @@
+{% extends "employee_information/base.html" %} 
+{% block pageContent %}
+
+<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12 mb-4">
+  <div class="mdc-card py-4 px-4 bg-gradient-to-r from-indigo-600 to-purple-500 text-white shadow-lg rounded-lg flex justify-between items-center">
+      <h4 class="text-xl font-semibold">Attendace Management</h4>
+      <button class="mdc-button mdc-button--raised btn-sm text-white bg-green-500 hover:bg-green-600 rounded-full shadow-lg hidden" id="create_new">
+          <i class="material-icons mdc-button__icon">add</i><span>Add New</span>
+      </button>
+  </div>
+</div>
+
+<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+  <div class="mdc-card bg-white shadow-lg rounded-lg overflow-hidden">
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered text-center">
+        <colgroup>
+          <col width="5%" />
+          <col width="15%" />
+          <col width="20%" />
+          <col width="20%" />
+          <col width="20%" />
+          <col width="10%" />
+          <col width="10%" />
+        </colgroup>
+        <thead class="bg-gray-200">
+          <tr>
+            <th class="py-2">#</th>
+            <th class="py-2">Code</th>
+            <th class="py-2">Name</th>
+            <th class="py-2">Department</th>
+            <th class="py-2">Position</th>
+            <th class="py-2">Is Present</th>
+            <th class="py-2">Time</th>
+            <th class="py-2">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for employee in employees %}
+          <tr class="border-b hover:bg-gray-100 transition duration-200">
+            <td class="py-2">{{ employee.id }}</td>
+            <td class="py-2">{{ employee.code }}</td>
+            <td class="py-2">{{ employee.firstname }} {{ employee.middlename }} {{ employee.lastname }}</td>
+            <td class="py-2">{{ employee.department_id }}</td>
+            <td class="py-2">{{ employee.position_id }}</td>
+            <td class="py-2">
+              {% if employee.status == 1 %}
+              <span class="badge bg-green-500 text-white rounded-full px-3 py-1">Present</span> 
+              {% else %}
+              <span class="badge bg-red-500 text-white rounded-full px-3 py-1">Absent</span>
+              {% endif %}
+            </td>
+            <td class="py-2">
+              {% if employee.status == 1 %}
+              {{ employee.date_updated }}
+              {% else %}
+              N/A
+              {% endif %}
+            </td>
+            <td class="py-2">
+              <a class="mdc-button mdc-button--raised text-white" 
+                style="background-color: #4CAF50; transition: transform 0.2s, box-shadow 0.2s; border-radius: 8px;"
+                href="{% url 'mark_present' employee_code=employee.code %}" 
+                data-id="{{ employee.pk }}" 
+                title="Mark Present">
+                <i class="material-icons mdc-button__icon">check_circle</i>
+                Mark Present
+              </a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock pageContent %}
