@@ -7,28 +7,23 @@
         </div>
         <div class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end mdc-top-app-bar__section-right">
             <div class="menu-button-container menu-profile d-none d-md-block">
-                <button class="mdc-button mdc-menu-button  ">
+                <button class="mdc-button mdc-menu-button">
                     <span class="d-flex align-items-center">
-                    <span class="figure ">
-                        <img src="{% static 'employee_information/assets/material-admin/images/faces/rez.png' %}" alt="user" class="user rounded-circle border border-3 border-primary shadow-lg" style="width: 30px; height: 30px; object-fit: cover; ">
-                    </span> 
-                    {% comment %} <div class="text-center">
-                        <span class="figure ">
-                            <img src="{% static 'employee_information/assets/material-admin/images/faces/rez.png' %}" alt="user" class="rounded-circle border border-3 border-primary shadow-lg" style="width: 150px; height: 150px; object-fit: cover;">
+                        <span class="figure">
+                            <img src="{% static 'employee_information/assets/material-admin/images/faces/rez.png' %}" alt="user" class="user rounded-circle border border-3 border-primary shadow-lg profile-avatar" style="width: 35px; height: 35px; object-fit: cover;">
                         </span>
-                    </div> {% endcomment %}
-                    <span class="user-name">{{ user.first_name }}</span>
+                        <span class="user-name">{{ user.first_name }}</span>
                     </span>
                 </button>
-                <div class="mdc-menu mdc-menu-surface "  tabindex="-1">
+                <div class="mdc-menu mdc-menu-surface" tabindex="-1">
                     <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical">
                         <li class="mdc-list-item" role="menuitem">
-                            <div class="item-thumbnail ">
+                            <div class="item-thumbnail">
                                 <i class="mdi mdi-settings-outline text-primary"></i>
                             </div>
                             <div class="item-content d-flex align-items-start flex-column justify-content-center">
                                 <h6 class="item-subject font-weight-normal">
-                                    <a  class=" text-decoration-none "  href="{% url 'redirect-admin' %}">Admin</a>
+                                    <a class="text-decoration-none" href="{% url 'redirect-admin' %}">Admin</a>
                                 </h6>
                             </div>
                         </li>
@@ -37,7 +32,9 @@
                                 <i class="mdi mdi-logout text-primary"></i>
                             </div>
                             <div class="item-content d-flex align-items-start flex-column justify-content-center">
-                                <h6 class="item-subject font-weight-normal"><a class=" text-decoration-none " href="{% url 'logout' %}">Logout</a></h6>
+                                <h6 class="item-subject font-weight-normal">
+                                    <a class="text-decoration-none" href="{% url 'logout' %}">Logout</a>
+                                </h6>
                             </div>
                         </li>
                     </ul>
@@ -47,3 +44,102 @@
     </div>
 </header>
 <!-- partial -->
+
+<!-- Add the following CSS for more styling -->
+<style>
+    /* Importing Google Font for better typography */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+    .mdc-top-app-bar {
+        background-color: #fff; /* Clean, modern look */
+        color: #333; /* Dark text color for better readability */
+        font-family: 'Inter', sans-serif; /* Modern font */
+        transition: box-shadow 0.3s ease-in-out; /* Smooth shadow transition */
+    }
+
+    .mdc-top-app-bar__section--align-start button {
+        transition: transform 0.3s ease; /* Smooth animation for menu button */
+    }
+
+    .mdc-top-app-bar__section--align-start button:hover {
+        transform: scale(1.1); /* Slight zoom effect on hover for the menu button */
+    }
+
+    /* Profile avatar hover effect */
+    .profile-avatar {
+        border-radius: 50%;
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+    }
+
+    .profile-avatar:hover {
+        transform: scale(1.1); /* Slight zoom effect */
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1); /* Add soft shadow for emphasis */
+    }
+
+    /* Dropdown menu styling */
+    .mdc-menu-surface {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out; /* Fade-in effect */
+        transform: translateY(10px); /* Slight upward movement */
+    }
+
+    .mdc-menu.mdc-menu-surface--open {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Hover effects for menu items */
+    .mdc-list-item:hover {
+        background-color: #f0f0f0; /* Light background on hover */
+        cursor: pointer;
+        color: #804FEF; /* Accent color on hover */
+    }
+
+    .item-thumbnail {
+        transition: transform 0.3s ease;
+    }
+
+    .mdc-list-item i:hover {
+        transform: scale(1.1); /* Slight zoom effect on icons */
+    }
+
+    /* User name style */
+    .user-name {
+        color: #804FEF; /* Accent color */
+        font-weight: 600; /* Bold text for prominence */
+        margin-left: 10px;
+        font-size: 16px;
+        transition: color 0.3s ease;
+    }
+
+    .user-name:hover {
+        color: #333; /* Darker color when hovered */
+    }
+
+    /* Item links hover effect */
+    .item-subject a {
+        color: #333; /* Default color */
+        font-size: 14px;
+        transition: color 0.3s ease;
+    }
+
+    .item-subject a:hover {
+        color: #804FEF; /* Highlighted color on hover */
+    }
+
+    /* Adding subtle shadow effect to the top bar */
+    .mdc-top-app-bar.shadow {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Styling the sidebar toggler button */
+    .sidebar-toggler {
+        transition: transform 0.3s ease;
+    }
+
+    .sidebar-toggler:hover {
+        transform: rotate(90deg); /* Rotate button on hover */
+    }
+</style>
