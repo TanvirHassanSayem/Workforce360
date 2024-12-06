@@ -32,7 +32,7 @@ defusedxml==0.6.0
 dill==0.3.9
 distlib==0.3.8
 dj-database-url==2.3.0
-Django==5.1.1
+Django==5.1.4
 django-allauth==65.0.2
 django-cors-headers==4.4.0
 django-countries==7.6.1
